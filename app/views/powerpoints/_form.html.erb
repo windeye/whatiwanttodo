@@ -1,0 +1,40 @@
+<%= form_for(@powerpoint, :html => {:multipart => true}) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+  <div class="form-group">
+    <%= f.label :title, "PPT标题" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, "PPT的相关描述" %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :download_url, "PPT下载地址" %>
+    <%= f.text_field :download_url, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :attachment, "上传PPT文件" %>
+    <%= f.file_field :attachment %>
+  </div>
+  <div class="form-group">
+    <%= f.label :image, " PPT文件的图片" %>
+    <%= f.file_field :image %>
+  </div>
+  <div class="form-group">
+    <%= f.label :category_id, "全部分类" %>
+		<%= f.select :category_id, Category.order("name ASC").map {|c| [c.name, c.id]}, {},{class: "form-control"} %>
+  </div>
+	<div>
+	  <%= f.radio_button :powerpoint_type, 'flash', checked: true %> 
+	  <%= f.label :powerpoint_type, 'Flash', value: 'flash' %>
+	  <%= f.radio_button :powerpoint_type, 'pdf' %>
+	  <%= f.label :powerpoint_type, 'PDF', value: 'pdf' %>
+  </div>
+	<div class="form-group">
+		  <%= f.label :tag_list, "标签(请用英文逗号分割)" %><br />
+		  <%= f.text_field :tag_list,  class: "form-control" %>
+	</div>
+  <div>
+    <%= f.submit "创建", class: "btn btn-primary btn-block"%>
+  </div>
+<% end %>

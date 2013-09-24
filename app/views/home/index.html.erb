@@ -1,0 +1,18 @@
+<% provide(:title, "#{SITE_NAME}") %>
+<% cache('index_all_category', expires_in: 12.hours) do %>
+	<% Category.all.each do |c| %>
+		<% if c.powerpoints.count > 0 %>
+			<div class = "cate-header">
+				<a href="#"><%= c.name %><span class = "badge adjust"><%= c.powerpoints.count %></span></a>
+			</div>
+			<div class = "image_carousel">
+				<div id = "<%= c.nickname %>"</div> 
+					<%= render partial: "powerpoints/powerpoint", collection: c.powerpoints %>
+				</div>
+				<a class="prev" id="<%= c.nickname %>_prev" href="#"><span>prev</span></a>
+				<a class="next" id="<%= c.nickname %>_next" href="#"><span>next</span></a>
+				<div class = "clearfix"></div>
+			</div>
+		<% end %>
+	<% end %>
+<% end %>

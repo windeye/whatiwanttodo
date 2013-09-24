@@ -1,0 +1,72 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  views:
+    pagination:
+      previous: "&laquo;"
+      next: "&raquo;"
+      truncate: "..."
+
+      #Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+      datetime:
+        distance_in_words:
+          half_a_minute: "half a minute"
+          less_than_x_seconds:
+            one:   "1秒前"
+            other: "%{count}秒前"
+          x_seconds:
+            one:   "1秒"
+            other: "%{count}秒"
+          less_than_x_minutes:
+            one:   "1分钟前"
+            other: "%{count}分钟前"
+          x_minutes:
+             one:   "1分钟"
+             other: "%{count}分钟"
+          about_x_hours:
+             one:   "1 小时"
+             other: "%{count} 小时"
+          x_days:
+             one:   "1天"
+             other: "%{count}天"
+          about_x_months:
+            one:   "1个月前"
+            other: "%{count}个月前"
+          x_months:
+            one:   "1个月"
+            other: "%{count} 个月"
+          about_x_years:
+            one:   "1 年"
+            other: "%{count} 年"
+          over_x_years:
+            one:   "over 1 year"
+            other: "over %{count} years"
+          almost_x_years:
+            one:   "almost 1 year"
+            other: "almost %{count} years"
+          prompts:
+            year:   "Year"
+            month:  "Month"
+            day:    "Day"
+            hour:   "Hour"
+            minute: "Minute"
+            second: "Seconds"

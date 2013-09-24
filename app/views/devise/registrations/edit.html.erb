@@ -1,0 +1,44 @@
+<% provide(:title, "#{resource.username}") %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { multipart: true }) do |f| %>
+<%= render 'shared/error_messages', object: resource %>
+<div class = "row sign-container">
+	<div class = "col-md-6 col-md-offset-3" >
+		<div id = "sign-box">
+			<div class = "row">
+				<div class = "col-md-6" >
+					<%= f.input :email, label: "邮箱", autofocus: true,input_html: { class: "form-control" }, wrapper_html: { class: "form-group col-md-offset-1 col-md-9" } %>
+					<%= f.input :username, label: "用户名", input_html: { class: "form-control" }, wrapper_html: { class: "form-group col-md-offset-1 col-md-9" } %>
+					<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+						<p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+					<% end %>
+
+					<%= f.input :password, required: false, label: "密码", autocomplete: "off", hint: "如果不想修改密码，不必填写", input_html: { class: "form-control" }, wrapper_html: { class: "form-group col-md-offset-1 col-md-9" } %>
+					<%= f.input :password_confirmation, label: "密确认码", input_html: { class: "form-control" }, wrapper_html: { class: "form-group col-md-offset-1 col-md-9" } %>
+					<div class = "form-group">
+						<div class = "col-md-offset-1 col-md-9">
+							<%= f.button :submit, "更新", class: "btn btn-primary btn-block" %>
+						</div>
+					</div>
+		    </div>
+				<div class = "col-md-6">
+					<div class="col-md-offset-1 form-group">  
+						<%= f.input :avatar, label: "添加或更换头像", as: :file %>  
+						<%= f.input :avatar_cache, as: :hidden %>  
+						<p class="help-block">你可以上传JPG、JPEG、GIF或PNG格式的文件</p>
+						<div>
+							<h4>现在的头像</h4>
+						  <%= image_tag(resource.avatar_url(:thumb), size: '64x64') %>  
+						</div>
+						<div class="avatar-suggest">
+							</br>
+							建议您上传近距离的照片（比如大头照、特写），照片尺寸最好大于300x300像素,这样经过编辑后的头像会很清楚。 
+							</br>
+						</div>
+					</div>  
+				</div>
+				<%= link_to ">删除帐号<", registration_path(resource_name), :data => { :confirm => "确定删除帐号?" }, :method => :delete, class: "left-bottom" %>
+		  </div>
+		</div>
+	</div>
+</div>
+<% end %>

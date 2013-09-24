@@ -1,0 +1,7 @@
+<!-- 
+<%= image_tag(powerpoint.image_url(:medium)) if powerpoint.image? %>
+<p><%= powerpoint.attachment_url %></p>
+<embed width="800" height="600" src=<%= powerpoint.attachment_url %>>
+<%= link_to (image_tag "#{powerpoint.image_url(:medium)}", alt: powerpoint.title,size: "220x124"), powerpoint_path(powerpoint) %>
+<%= image_tag "#{powerpoint.image_url(:medium)}", alt: powerpoint.title,size: "220x124" %>
+-->

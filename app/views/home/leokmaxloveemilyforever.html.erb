@@ -1,0 +1,9 @@
+<% provide(:title, "Manage Page")%>
+<% if can? :manage, :all%>
+	<div class = "col-md-offset-1 col-md-5">	
+		<%=	render 'powerpoints/form' %>
+	</div>
+	<div class = "col-md-offset-1 col-md-5">
+	  <%= render 'categories/form' %>
+	</div>
+<% end %>

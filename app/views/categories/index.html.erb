@@ -1,0 +1,11 @@
+<% provide(:title, "全部分类") %>
+<% if @categories.count > 0 %>
+	<% @categories.each do |c| %>
+		<span class="category">
+			<p><%= c.name %></p>
+			<%= link_to "删除", category_path(c), {method: :delete, class: "btn btn-primary btn-xs"} %>
+		</span>
+	<% end %>
+<% else %>
+	<h3>现在还没有分类，请添加分类</h1>
+<% end %>
