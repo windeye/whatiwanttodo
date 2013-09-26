@@ -1,4 +1,7 @@
 <% provide(:title, "#{@powerpoint.title}")%>
+<% content_for :javascript do %>
+	<script src="/assets/interactions.js"></script>
+<% end %>
 <div class = "row">
 	<div class = "ppt-wrapper col-md-offset-1 col-md-7">
 		<div id = "panel-box" class = "panel">

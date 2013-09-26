@@ -1,4 +1,60 @@
 <% provide(:title, "#{SITE_NAME}") %>
+<% content_for :javascript do %>
+	<script>
+		$(document).ready(function() {
+			$("#tech").carouFredSel(
+				{
+					circular : false,
+					infinite : false,
+					width : "100%",	
+					auto	: false,
+					items : {
+						visible: 4,
+						minimum: 5
+					},
+					prev	: "#tech_prev",
+					next  : "#tech_next"
+				},
+				{ 
+					 wrapper  : "parent"
+				});
+			$("#food").carouFredSel(
+				{
+					circular : false,
+					infinite : false,
+					width : "100%",	
+					auto	: false,
+					items : {
+						visible: 4,
+						minimum: 5
+					},
+					prev	: "#food_prev",
+					next  : "#food_next"
+				},
+				{ 
+					 wrapper  : "parent"
+				});
+			$("#book").carouFredSel(
+				{
+					circular : false,
+					infinite : false,
+					width : "100%",	
+					auto	: false,
+					items : {
+						visible: 4,
+						minimum: 5
+					},
+					prev	: "#book_prev",
+					next  : "#book_next"
+				},
+				{ 
+					 wrapper  : "parent"
+					 //element     : "figure",
+					 //classname   : "col-md-10"
+				});
+		});
+  </script>
+<% end %>
 <% cache('index_all_category', expires_in: 12.hours) do %>
 	<% Category.all.each do |c| %>
 		<% if c.powerpoints.count > 0 %>
