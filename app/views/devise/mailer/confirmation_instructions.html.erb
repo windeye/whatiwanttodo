@@ -1,5 +1,11 @@
-<p>Welcome <%= @email %>!</p>
+<p>您好 <%= @username %>:</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>感谢您注册TagSlide。</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p>请点击以下链接进行邮箱验证，以便开始使用您的TagSlide帐号：</p>
+
+<p><%= link_to '验证邮箱', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<p>如果您并未申请TagSlide帐号，可能是其他用户误输入了您的邮箱地址。请忽略此邮件，或与我们联系。</p>
+
+<p>温馨提示：此邮件由系统自动发送，请勿直接回复。</p>

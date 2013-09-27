@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -22,7 +22,7 @@ gem 'mini_magick'
 #
 #server gem
 gem 'sidekiq'
-gem 'puma'
+gem 'puma', '~> 2.6.0'
 #memcached
 gem 'dalli'
 #for redis operation
