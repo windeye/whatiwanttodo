@@ -33,5 +33,15 @@ Slideonline::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-	config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => '10.0.2.136:3000' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method =:smtp
+  config.action_mailer.smtp_settings = {
+    :address=> "smtp.126.com",
+    :port=> 25,
+    :domain=> "126.com",
+    :authentication=> :login,
+    :user_name=> "tagslide@126.com",
+    :password=> "xlw123" 
+  }
 end
