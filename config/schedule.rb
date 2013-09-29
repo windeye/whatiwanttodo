@@ -1,6 +1,5 @@
 # Use this file to easily define all of your cron jobs.
 #
-# set :output, "/path/to/my/cron_log.log"
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -8,6 +7,11 @@
 #   rake "some:great:rake:task"
 # end
 #
-every 1.hour do
-  runner "Powerpoint.adjust_scores_crontab"
+set :output, Rails.root.join("/log/crontask.log")
+#set :environment, 'development'
+every 10.minutes do
+  runner "Powerpoint.adjust_scores_crontab", environment => "development"
 end
+#every :hour do
+#  runner "Powerpoint.adjust_scores_crontab"
+#end
