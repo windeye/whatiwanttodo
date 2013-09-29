@@ -1,6 +1,6 @@
 nav id="nav" class="collapse navbar-collapse" role="navigation"
   ul class = "nav navbar-nav"
-    li= link_to "主页", root_path, {style: "margin-left: 120px;"}
+    li= link_to "TagSlide", root_path, {style: "margin-left: 80px;", class: "navbar-brand"}
   ul class="nav navbar-nav pull-right"
 		- if user_signed_in?
 			- if can? :manage, :all

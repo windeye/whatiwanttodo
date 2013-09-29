@@ -1,5 +1,4 @@
-<% provide(:title, "All") %>
-<%= paginate @powerpoints, window: 2 %>
+<% provide(:title, "#{SITE_NAME}|ALL") %>
 
 <div class = "row">  
 	  <%= render partial: 'page_ppt', collection: @powerpoints, as: :ppt %>

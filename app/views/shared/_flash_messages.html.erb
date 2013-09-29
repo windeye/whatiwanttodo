@@ -1,14 +1,14 @@
 <% if flash[:alert] %>
 	<div id="messages" class = "expose">
 		<ul class = "message">
-			 <li>* <%= flash[:alert] %></li>
+			 <li><%= flash[:alert] %></li>
 		</ul>
 	</div>
 <% end %>
 <% if flash[:notice] %>
 	<div id="messages" class = "expose">
 		<ul class = "message">
-			 <li>* <%= flash[:notice] %></li>
+			 <li><%= flash[:notice] %></li>
 		</ul>
 	</div>
 <% end %>

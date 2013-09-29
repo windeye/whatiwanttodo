@@ -1,0 +1,10 @@
+<% if object.errors.any? %>
+	<div id="messages" class = "expose">
+		<ul class = "message">
+          <li>提交失败：有以下 <%= object.errors.count %>个错误</li>
+          <% object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+		</ul>
+  </div>
+<% end %>
