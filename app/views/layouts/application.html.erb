@@ -16,8 +16,10 @@
 <header class="navbar navbar-static-top navbar-color" role="banner">
 	<%= render :partial => "shared/nav" %>
 </header>
+
 <%= yield %>
 
+<%= render 'shared/footer' %>
 <script src="/assets/up-to-top.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {

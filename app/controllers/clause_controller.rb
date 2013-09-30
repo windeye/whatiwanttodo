@@ -1,0 +1,2 @@
+class ClauseController < ApplicationController
+end
