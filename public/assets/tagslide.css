@@ -7038,6 +7038,7 @@ span.adjust {
 
 .thumbnail img {
   padding: 2px 2px;
+  height: 212px;
   width: 100%; }
 
 .media-body h3 {
