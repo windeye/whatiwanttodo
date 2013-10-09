@@ -723,23 +723,34 @@ hr{
   margin-top: 0px;
 }
 
+html, body {
+  background-color: #ebebeb;
+	height: 100%;
+	padding: 0px;
+    margin: 0px;
+}
 .fixed-bottom {
-	position: absolute;
-	bottom: 0;
-	margin-bottom: 0;
+    clear: both;
+    position: absolute;
+    bottom: 0px;
 	height: 60px;
 	width: 100%;
+    border-top: 1px solid #fff
 }
 #tagslide {
-	min-height: 100%;
-	height: 100%;
-	//position: relative;
-}
-body {
-	background-color: #ebebeb;
-	height: 100%;
-	padding: 0px; 
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  position: relative;
 }
 #tagpage {
-	padding-bottom: 60px;   /* Height of the footer */
+  padding-bottom: 60px;
+}
+.clause {
+  margin: 0px 180px 0px 160px;
+}
+
+#footer li{
+  float: left;
+  width: 100px;
 }

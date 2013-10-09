@@ -59,7 +59,7 @@
 	<% Category.all.each do |c| %>
 		<% if c.powerpoints.count > 0 %>
 			<div class = "cate-header">
-				<a href="#"><%= c.name %><span class = "badge adjust"><%= c.powerpoints.count %></span></a>
+				<a href="/c/<%= c.id%>"><%= c.name %><span class = "badge adjust"><%= c.powerpoints.count %></span></a>
 			</div>
 			<div class = "image_carousel">
 				<div id = "<%= c.nickname %>"</div> 

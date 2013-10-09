@@ -7490,27 +7490,37 @@ hr {
 #pTab {
   margin-top: 0px; }
 
-.fixed-bottom {
-	position: absolute;
-  bottom: 0;
-  margin-bottom: 0;
-	height: 60px;
-	width: 100%;
-}
-#tagslide {
-  min-height: 100%;
-  height: 100%;
-	//position: relative;
-}
-body {
+html, body {
   background-color: #ebebeb;
 	height: 100%;
 	padding: 0px;
+    margin: 0px;
+}
+.fixed-bottom {
+    clear: both;
+    position: absolute;
+    bottom: 0px;
+	height: 60px;
+	width: 100%;
+    border-top: 1px solid #fff
+}
+#tagslide {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  position: relative;
 }
 #tagpage {
   padding-bottom: 60px;   /* Height of the footer */
 }
+.clause {
+  margin: 0px 180px 0px 160px;
+}
 
+#footer li{
+  float: left;
+  width: 100px;
+}
 /*
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.

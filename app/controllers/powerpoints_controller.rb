@@ -9,6 +9,12 @@ class PowerpointsController < ApplicationController
     @powerpoints = Powerpoint.page(params[:page]).per(12)
   end
 
+  def category
+    @c = Category.find(params[:id])
+    @powerpoints = @c.powerpoints.page(params[:page]).per(12)
+    
+    render :index 
+  end
   # GET /powerpoints/1
   # GET /powerpoints/1.json
   def show

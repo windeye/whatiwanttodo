@@ -25,6 +25,8 @@ Slideonline::Application.routes.draw do
 	get '/privacy' => 'clause#privacy', :as => 'privacy'
 	get '/terms' => 'clause#terms', :as => 'terms'
 
+    get "/c/:id" => "powerpoints#category", as: :short_category
+
 	resources :comments, :only => [:create, :destroy]
 	resources :powerpoints
 	resources :powerpoints do
