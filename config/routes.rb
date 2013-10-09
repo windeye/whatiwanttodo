@@ -20,6 +20,11 @@ Slideonline::Application.routes.draw do
 	#  patch '/users/:id', :to => 'users#update'
   #end
 
+	get '/about' => 'clause#about', :as => 'about'
+	get '/contact' => 'clause#contact', :as => 'contact'
+	get '/privacy' => 'clause#privacy', :as => 'privacy'
+	get '/terms' => 'clause#terms', :as => 'terms'
+
 	resources :comments, :only => [:create, :destroy]
 	resources :powerpoints
 	resources :powerpoints do

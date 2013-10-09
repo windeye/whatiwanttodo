@@ -12,14 +12,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'shared/flash_messages' %>
-<header class="navbar navbar-static-top navbar-color" role="banner">
-	<%= render :partial => "shared/nav" %>
-</header>
+<div id="tagslide">
+	<%= render 'shared/flash_messages' %>
+	<header class="navbar navbar-static-top navbar-color" role="banner">
+		<%= render :partial => "shared/nav" %>
+	</header>
 
-<%= yield %>
+	<div id="tagpage">
+	  <%= yield %>
+	</div>
 
-<%= render 'shared/footer' %>
+	<%= render 'shared/footer' %>
+</div>
 <script src="/assets/up-to-top.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
