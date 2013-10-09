@@ -6871,8 +6871,8 @@ nav a:hover {
   color: #333333; }
 
 .sign-container {
-  position: relative;
-  top: 150px;
+  //position: relative;
+  padding-top: 120px;
   z-index: 5; }
 
 .placeholder {
@@ -7511,7 +7511,7 @@ html, body {
   position: relative;
 }
 #tagpage {
-  padding-bottom: 60px;   /* Height of the footer */
+  padding-bottom: 80px;   /* Height of the footer */
 }
 .clause {
   margin: 0px 180px 0px 160px;
