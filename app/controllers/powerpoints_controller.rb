@@ -20,6 +20,7 @@ class PowerpointsController < ApplicationController
   def show
 		@comments = @powerpoint.comments.order('created_at desc')
     @comment = @powerpoint.comments.build		
+    @powerpoint.views.increment
 		@hottest = Rails.cache.fetch('hottests', expires_in: 2.hours) do
 			allhottest = Powerpoint.hottest
 			if allhottest.length > 4

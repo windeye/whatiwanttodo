@@ -56,7 +56,7 @@ nav a:hover {
 
 .sign-container {
 	position:relative;
-	top: 150px;
+	top: 100px;
 	z-index: 5;
 }
 .placeholder {
@@ -735,6 +735,7 @@ html, body {
     bottom: 0px;
 	height: 60px;
 	width: 100%;
+    z-index: 12;
     border-top: 1px solid #fff
 }
 #tagslide {
