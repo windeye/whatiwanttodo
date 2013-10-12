@@ -72,7 +72,7 @@ class Powerpoint < ActiveRecord::Base
 
 		def adjust_scores_crontab
 			ids = Powerpoint.scores.revrange(0,30)
-      front_30s = Powerpoint.where(id: ids)
+            front_30s = Powerpoint.where(id: ids)
 			front_30s.each do |p|
 				#current_score = Powerpoint.scores[p.id]
 				created_time = DateTime.parse(p.created_at.to_s).to_time.to_i
@@ -81,7 +81,7 @@ class Powerpoint < ActiveRecord::Base
 				if hour_diff == 0
 					hour_diff = 1
 			  end 
-				Powerpoint.scores[id] = 10*(Powerpoint.rankings[id]/hour_diff).round(5)
+				Powerpoint.scores[p.id] = 10*(Powerpoint.rankings[p.id]/hour_diff).round(5)
 		  end 
 		end
 

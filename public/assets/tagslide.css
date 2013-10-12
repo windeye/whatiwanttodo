@@ -4975,6 +4975,7 @@ a.list-group-item.active > .badge,
 	float: left;
   height: auto;
   max-width: 100%;
+  width: 100%;
   padding: 4px;
   line-height: 1.428571429;
   background-color: #ffffff;
