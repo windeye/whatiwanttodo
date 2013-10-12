@@ -1,4 +1,20 @@
 <% provide(:title, "#{SITE_NAME} | 注册") %>
+<% content_for :javascript do %>
+<script>
+$(document).ready(function() {
+  $("#user_terms").click(function(){
+    if($(this).attr("checked") == "checked"){
+      $("#signup_btn").removeClass("disabled");
+    }else{
+      $("#signup_btn").addClass("disabled");
+    }
+  })
+});
+</script>
+<% end %>
+<%= content_for(:the_links) do %>
+  认真阅读并同意我们的<%= link_to "使用协议", terms_path%>
+<% end %>
 <div class = "row sign-container">
 	<div class = "col-md-6 col-md-offset-3" >
 		<div id = "sign-box">
@@ -11,8 +27,11 @@
 							<%= f.input :password, :required => false, label_html: {style: "display: none;"}, input_html: { class: "form-control", placeholder: "密码"}, wrapper_html: { class: "form-group col-md-offset-2 col-md-9" } %>
 							<%= f.input :password_confirmation, :required => false, label_html: {style: "display: none;"}, input_html: { class: "form-control", placeholder: "确认密码" }, wrapper_html: { class: "form-group col-md-offset-2 col-md-9" } %>
 						<div class = "form-group">
+                          <%= f.input :terms, :as => :boolean, :label => content_for(:the_links), wrapper_html: { class: "checkbox col-md-offset-2 col-md-9"} %> 
+						</div>
+						<div class = "form-group">
 							<div class = "col-md-offset-2 col-md-9">
-								<%= f.button :submit, "注册", class: "btn btn-primary btn-block" %>
+								<%= f.button :submit, "注册", id: "signup_btn", class: "btn btn-primary btn-block" %>
 							</div>
 						</div>
 					<% end %>

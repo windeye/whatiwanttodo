@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 	#validates :password_confirmation, presence: {message: "密码确认不匹配"}, if: "password.present?"
 
 
-	#validates :terms_of_service, acceptance: true
+	validates :terms,acceptance: { message: "请阅读并同意我们的使用协议" } 
 	def password_required?
 	  !persisted? || !password.nil? || !password_confirmation.nil?
 	end
