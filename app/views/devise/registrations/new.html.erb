@@ -2,8 +2,15 @@
 <% content_for :javascript do %>
 <script>
 $(document).ready(function() {
+  $("#user_terms").each(function(){
+    if($("#user_terms").is(':checked')) {
+      $("#signup_btn").removeClass('disabled');
+    } else {
+      $("#signup_btn").addClass('disabled');
+    }
+  });
   $("#user_terms").click(function(){
-    if($(this).attr("checked") == "checked"){
+    if($(this).is(":checked")){
       $("#signup_btn").removeClass("disabled");
     }else{
       $("#signup_btn").addClass("disabled");
