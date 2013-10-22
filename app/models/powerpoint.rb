@@ -1,29 +1,46 @@
 class Powerpoint < ActiveRecord::Base
 	include Redis::Objects
 
+	#mount_uploader :attachment, PowerpointUploader
+	#mount_uploader :image,      ImageUploader
+	#validates :attachment, :presence => true
+	#validates :image,      :presence => true
+
+    before_create :store_meta_info
+	after_create :update_newest
+    after_save :update_page_counts, on: :create
+
+    has_attached_file :pdffile,:url => "/uploads/:class/:attachment/:style/:filename",
+                      :styles => { :images => { :params => "-r88",:format => "png" } },
+                      :processors => [:pdf_imagize]
+
 	acts_as_commentable
 	acts_as_taggable_on :tags
-  scope :by_join_date, -> { order("created_at DESC") }
+    scope :by_join_date, -> { order("created_at DESC") }
 	belongs_to :user
 	belongs_to :category
 
 	has_many :favourites, dependent: :destroy
-	mount_uploader :attachment, PowerpointUploader
-	mount_uploader :image,      ImageUploader
-
-	validates :attachment, :presence => true
-	validates :image,      :presence => true
 	validates :title,      :presence => true
 	validates :description,:presence => true
 
 	#visit times
-  counter :views
-
-	after_create :update_newest
+    counter :views
 
 	def update_newest
 	  Powerpoint.newest_list << id	
 	end
+
+    def store_meta_info
+      #@current_format = File.extname(avatar_file_name)
+      #@basename       = File.basename(avatar_file_name, @current_format)
+      self.file_id =  Digest::SHA1.hexdigest(pdffile_file_name)
+      self.pdffile.instance_write(:file_name, "#{self.file_id}_#{pdffile_file_name}")
+    end
+
+    def update_page_counts
+      StoreMetaWorker.perform_async(id)
+    end
 
 	def rank #获得该对象的排名
 		Powerpoint.rankings.rank(id)

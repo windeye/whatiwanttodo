@@ -109,7 +109,7 @@ class PowerpointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def powerpoint_params
-      params.require(:powerpoint).permit( :title, :description, :attachment, :image, :category_id,
-																				  :tag_list, :download_url, :powerpoint_type)
+      params.require(:powerpoint).permit( :title, :description, :pdffile, :category_id,
+										  :tag_list, :download_url, :powerpoint_type)
     end
 end
