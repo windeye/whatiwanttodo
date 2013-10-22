@@ -1,7 +1,7 @@
 <div class = "thumbdiv"> 
 <!-- must set div float: left,or slide will failed !-->
 <div>
-<%= link_to (image_tag "#{powerpoint.image_url(:medium)}", alt: powerpoint.title), powerpoint_path(powerpoint) %>
+<%= link_to (image_tag "#{powerpoint.pdffile(:images)}", alt: powerpoint.title), powerpoint_path(powerpoint) %>
 </div>
 <div class = "slide-caption"><%= powerpoint.title %></div>
 </div>

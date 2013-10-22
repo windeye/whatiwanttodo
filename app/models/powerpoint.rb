@@ -8,7 +8,7 @@ class Powerpoint < ActiveRecord::Base
 
     before_create :store_meta_info
 	after_create :update_newest
-    after_save :update_page_counts, on: :create
+    after_save :update_page_counts
 
     has_attached_file :pdffile,:url => "/uploads/:class/:attachment/:style/:filename",
                       :styles => { :images => { :params => "-r88",:format => "png" } },

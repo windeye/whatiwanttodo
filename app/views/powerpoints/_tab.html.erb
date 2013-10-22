@@ -2,7 +2,7 @@
 <a href=<%= "#{powerpoint_path(powerpoint)}"%>>
 	<span class = "thumb-wrapper">
 	<span>
-		<%= image_tag "#{powerpoint.image_url(:thumb)}", alt: powerpoint.title,size: "128x90" %>
+		<%= image_tag "#{powerpoint.pdffile(:images)}", alt: powerpoint.title,size: "128x90" %>
 	</span>
 	</span>
 	<span class = "aside-title"><%= powerpoint.title %></span>

@@ -1,6 +1,6 @@
 <div class = "col-offset-quart col-sm-3">
 	<div class = "thumbnail">
-		<%= link_to (image_tag(ppt.image_url(:medium), alt: ppt.title)), powerpoint_path(ppt) %>
+		<%= link_to (image_tag(ppt.pdffile(:images), alt: ppt.title)), powerpoint_path(ppt) %>
 		<div class = "index-caption"> 
 			<p> <%= ppt.title %></p>
 		</div>

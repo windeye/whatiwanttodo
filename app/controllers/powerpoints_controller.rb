@@ -34,6 +34,7 @@ class PowerpointsController < ApplicationController
 		end
 		#不能缓存这个,和具体的slide相关的。
 		@relative = Powerpoint.tagged_with(@powerpoint.tag_list, on: :tags, any: true).where.not(id: @powerpoint.id).limit(4) 
+        render layout: false
   end
 
   # GET /powerpoints/1/edit

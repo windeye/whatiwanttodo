@@ -1,90 +1,43 @@
-<% provide(:title, "#{@powerpoint.title}")%>
-<% content_for :javascript do %>
+<!DOCTYPE html>
+<html>
+  <head>
+  <title><%= @powerpoint.title %></title>
+    <meta charset='utf-8'>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script src="/assets/interactions.js"></script>
-<% end %>
-<div class = "row">
-	<div class = "ppt-wrapper col-md-offset-1 col-md-7">
-		<div id = "panel-box" class = "panel">
-			<div class = "panel-body">
-				<embed width="100%" height="600px" src=<%= @powerpoint.attachment_url %>>
-			</div>
-			<div class = "panel-footer">
-				<h3 class = "ppt-title"><%= @powerpoint.title %></h3>
-				<p class = "ppt-desc"><%= @powerpoint.description %></p>
-        <!--tags list -->
-				<div class = "tag-list">
-					<span class = "ppt-desc">标签：</span>
-					<div class = "tags">
-						<% @powerpoint.tags.any? %>
-							<% @powerpoint.tags.each do |tag| %>
-								<div class = "tag tag-label">
-									<span><%= link_to tag.name, tagged_url(:tag => tag.name) %></span>
-								</div>
-							<% end %>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<!-- #favourites div -->
-				<%= render partial: 'favourites/favourite', locals: {powerpoint: @powerpoint} %>
-        <!--bshare button-->
-				<div class="bshare-custom">
-					<span>分享到：</span>
-					<a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
-					<a title="分享到腾讯微博" class="bshare-qqmb"></a>
-					<a title="分享到豆瓣" class="bshare-douban"></a>
-					<a title="分享到网易微博" class="bshare-neteasemb"></a>
-					<span class="BSHARE_COUNT bshare-share-count">0</span>
-				</div>
-				<div class = "clearfix"></div>
-			</div>
-		</div>
-
-		<div id="comments">	
-			<%= render partial: 'comments/form' %>
-			<hr />
-			<div id = "all-comments">
-			  <%= render partial: 'comments/comment', collection: @comments, as: :comment %>
-			</div>
-		</div>
-	</div>
-	<div class = "right-side col-md-3">
-		<ul id = "pTab" class="nav nav-tabs nav-justified">
-			<li class="active"><a href="#relative">相关内容</a></li>
-			<li ><a href="#hottest">当前最热</a></li>
-			<li><a href="#newest">本站最新</a></li>
-		</ul>
-
-		<div class="tab-content">
-			<div class="tab-pane active" id="relative">
-				<ul class = "aside-tab thumb-grid">
-					<% if @relative.count > 0 %>
-				    <%= render partial: "powerpoints/tab", collection: @relative, as: :powerpoint %>
-					<% else %>
-						<li>没有找到和本幻灯片相关的内容</li>
-					<% end %>
-				</ul>
-		  </div>
-			<div class="tab-pane" id="hottest">
-				<ul class = "aside-tab thumb-grid">
-				  <%= render partial: "powerpoints/tab", collection: @hottest, as: :powerpoint %>
-				</ul>
-			</div>
-			<div class="tab-pane" id="newest">
-				<ul class = "aside-tab thumb-grid">
-				  <%= render partial: "powerpoints/tab", collection: @newest, as: :powerpoint %>
-				</ul>
-		  </div>
-		</div>
-		<script>
-			$('#pTab a').click(function (e) {
-				e.preventDefault()
-				$(this).tab('show')
-			})
-		</script>
-	</div>
-</div>
-<% content_for :tail_js do %>
-	<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/button.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script>
-	<a class="bshareDiv" onclick="javascript:return false;"></a>
-	<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
-<% end %>
+    <script src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
+    <link href="http://slides.html5rocks.com/css/common.css" rel="stylesheet" media="screen" />
+    <link   href="/assets/tagslide.css" media = "all" rel = "stylesheet">
+    <script src='http://slides.html5rocks.com/js/utils.js'></script>
+	<script src="/assets/jquery_ujs.js"></script>
+	<link type="image/vnd.microsoft.icon" rel="shortcut icon" href="/assets/favicon.png">
+    
+  </head>
+  <body style='display: none'>
+    <nav id="helpers">
+    <div class = "tag-list">
+        <span class = "ppt-desc">标签：</span>
+        <div class = "tags">
+            <% @powerpoint.tags.any? %>
+                <% @powerpoint.tags.each do |tag| %>
+                    <div class = "tag tag-label">
+                        <span><%= link_to tag.name, tagged_url(:tag => tag.name) %></span>
+                    </div>
+                <% end %>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <%= render partial: 'favourites/favourite', locals: {powerpoint: @powerpoint} %>
+    </nav>
+    <section class='slides layout-regular'>
+    <% if @powerpoint.page_count > 0 %>
+      <% for page in (1..@powerpoint.page_count) %>
+        <%= render partial: 'powerpoints/onepage', locals: {page: page,powerpoint: @powerpoint} %>
+      <% end %>
+    <% else %>
+      <div>NOT FOUND,这个逻辑放在controller里面更好</div>
+    <% end %>
+    </section>
+  </body>
+</html>

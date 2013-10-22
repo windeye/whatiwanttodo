@@ -63,7 +63,7 @@
 			</div>
 			<div class = "image_carousel">
 				<div id = "<%= c.nickname %>"</div> 
-					<%= render partial: "powerpoints/powerpoint", collection: c.powerpoints %>
+					<%= render partial: "powerpoints/powerpoint", collection: c.powerpoints.limit(16) %>
 				</div>
 				<a class="prev" id="<%= c.nickname %>_prev" href="#"><span>prev</span></a>
 				<a class="next" id="<%= c.nickname %>_next" href="#"><span>next</span></a>
