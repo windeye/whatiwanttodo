@@ -1,0 +1,8 @@
+:verbose: false
+:pidfile: /var/run/app/sidekiq.pid
+:concurrency: 25
+:queues:
+  - [events, 3]
+  - [mailer, 3]
+  - [pages, 2]
+  - [default, 1]

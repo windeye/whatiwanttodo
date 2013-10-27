@@ -6,35 +6,39 @@ class PowerpointsController < ApplicationController
   # GET /powerpoints
   # GET /powerpoints.json
   def index
-    @powerpoints = Powerpoint.page(params[:page]).per(12)
+    @powerpoints = Powerpoint.page(params[:page]).per(9)
   end
 
   def category
     @c = Category.find(params[:id])
-    @powerpoints = @c.powerpoints.page(params[:page]).per(12)
+    @powerpoints = @c.powerpoints.page(params[:page]).per(9)
     
     render :index 
   end
   # GET /powerpoints/1
   # GET /powerpoints/1.json
   def show
-		@comments = @powerpoint.comments.order('created_at desc')
-    @comment = @powerpoint.comments.build		
-    @powerpoint.views.increment
-		@hottest = Rails.cache.fetch('hottests', expires_in: 2.hours) do
-			allhottest = Powerpoint.hottest
-			if allhottest.length > 4
-				allhottest.slice(0,4)
-			else
-				allhottest.slice(0,allhottest.length)
-			end
+		if @powerpoint.page_count > 0
+			@comments = @powerpoint.comments.order('created_at desc')
+			@comment = @powerpoint.comments.build		
+			@powerpoint.views.increment
+      render layout: false
+		else
+			render status: 404
 		end
-		@newest = Rails.cache.fetch('newests', expires_in: 2.hours) do
-		  Powerpoint.newest.limit(4)
-		end
+		#@hottest = Rails.cache.fetch('hottests', expires_in: 2.hours) do
+		#	allhottest = Powerpoint.hottest
+		#	if allhottest.length > 4
+		#		allhottest.slice(0,4)
+		#	else
+		#		allhottest.slice(0,allhottest.length)
+		#	end
+		#end
+		#@newest = Rails.cache.fetch('newests', expires_in: 2.hours) do
+		#  Powerpoint.newest.limit(4)
+		#end
 		#不能缓存这个,和具体的slide相关的。
-		@relative = Powerpoint.tagged_with(@powerpoint.tag_list, on: :tags, any: true).where.not(id: @powerpoint.id).limit(4) 
-        render layout: false
+		#@relative = Powerpoint.tagged_with(@powerpoint.tag_list, on: :tags, any: true).where.not(id: @powerpoint.id).limit(4) 
   end
 
   # GET /powerpoints/1/edit
@@ -91,7 +95,7 @@ class PowerpointsController < ApplicationController
 
 	def tagged
 		if params[:tag].present? 
-			@powerpoints = Powerpoint.tagged_with(params[:tag]).page(params[:page]).per(12)
+			@powerpoints = Powerpoint.tagged_with(params[:tag]).page(params[:page]).per(9)
 			render :index 
 		else 
 			redirect_to :back
@@ -99,7 +103,7 @@ class PowerpointsController < ApplicationController
 	end
 
 	def favourites
-		@powerpoints = current_user.favourite_powerpoints.page(params[:page]).per(12)
+		@powerpoints = current_user.favourite_powerpoints.page(params[:page]).per(9)
 		render :index
 	end
   private

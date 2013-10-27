@@ -7,5 +7,7 @@ class CreatePowerpoints < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :powerpoints, :user_id
+    add_index :powerpoints, :title,  :unique => true
   end
 end

@@ -3,11 +3,11 @@
 		<%= image_tag(comment.user.avatar_url(:thumb), size: "64x64", alt: "Avatar", class: "img-rounded" ) %>  
 	</div>
 	<div class = "media-body">
-		<h3><%= comment.user.email %><span><%= DateTime.parse(comment.created_at.to_s).strftime('%Y-%m-%d %H:%M') %></span>
+		<h5><%= comment.user.username %><span><%= DateTime.parse(comment.created_at.to_s).strftime('%Y-%m-%d %H:%M') %></span>
 			<% if can? :destroy, comment %>
 				<%= link_to "删除", comment_path(comment), method: :delete, remote: true, confirm: "确定删除评论？", disable_with: "删除...", class: "btn btn-default btn-xs pull-right" %>
 			<% end %>
-	  </h3> 
+	  </h5> 
 		<p><%= comment.comment %></p>
 	</div>
 </div>

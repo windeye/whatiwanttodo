@@ -1,43 +1,98 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title><%= @powerpoint.title %></title>
-    <meta charset='utf-8'>
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<title><%= @powerpoint.title %></title>
+		<meta charset='utf-8'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="discription" content=<%= @powerpoint.title %>/>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-	<script src="/assets/interactions.js"></script>
-    <script src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
-    <link href="http://slides.html5rocks.com/css/common.css" rel="stylesheet" media="screen" />
-    <link   href="/assets/tagslide.css" media = "all" rel = "stylesheet">
-    <script src='http://slides.html5rocks.com/js/utils.js'></script>
-	<script src="/assets/jquery_ujs.js"></script>
-	<link type="image/vnd.microsoft.icon" rel="shortcut icon" href="/assets/favicon.png">
-    
+		<script src="/assets/tagslide.js"></script>
+		<script src="/assets/jquery_ujs.js"></script>
+		<link   href="/assets/tagslide.css" media = "all" rel = "stylesheet">
+		<link type="image/vnd.microsoft.icon" rel="shortcut icon" href="/assets/favicon.png">
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-44797086-1', 'tagslide.com');
+			ga('send', 'pageview');
+		</script>
+		<%= csrf_meta_tags %>
   </head>
   <body style='display: none'>
     <nav id="helpers">
-    <div class = "tag-list">
-        <span class = "ppt-desc">标签：</span>
-        <div class = "tags">
-            <% @powerpoint.tags.any? %>
-                <% @powerpoint.tags.each do |tag| %>
-                    <div class = "tag tag-label">
-                        <span><%= link_to tag.name, tagged_url(:tag => tag.name) %></span>
-                    </div>
-                <% end %>
-        </div>
-        <div class="clearfix"></div>
+    <div id = "labels" class = "tag-list">
+			<div class = "tags">
+				<% @powerpoint.tags.any? %>
+					<div class = "tag tag-label">
+						<span><a>标签:</a></span>
+					</div>
+					<% @powerpoint.tags.each do |tag| %>
+						<div class = "tag tag-label">
+								<span><%= link_to tag.name, tagged_url(:tag => tag.name) %></span>
+						</div>
+					<% end %>
+			</div>
     </div>
+		<!--bshare button-->
+		<div id="help">
+      <a data-toggle="modal" href="#helps"></a>
+    </div>
+		<div id = "shares">
+			<div class="bshare-custom">
+				<a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+				<a title="分享到腾讯微博" class="bshare-qqmb"></a>
+				<a title="分享到豆瓣" class="bshare-douban"></a>
+			</div>
+		</div>
     <%= render partial: 'favourites/favourite', locals: {powerpoint: @powerpoint} %>
+		<div class="comments-icon">
+      <a data-toggle="modal" href="#comments" class="comment-icon"></a>
+    </div>
+		<div id = "gohome">
+		  <%= link_to "", root_path %>
+	  </div>
     </nav>
     <section class='slides layout-regular'>
-    <% if @powerpoint.page_count > 0 %>
-      <% for page in (1..@powerpoint.page_count) %>
-        <%= render partial: 'powerpoints/onepage', locals: {page: page,powerpoint: @powerpoint} %>
-      <% end %>
-    <% else %>
-      <div>NOT FOUND,这个逻辑放在controller里面更好</div>
-    <% end %>
+		<% for page in (1..@powerpoint.page_count) %>
+			<%= render partial: 'powerpoints/onepage', locals: {page: page,powerpoint: @powerpoint} %>
+		<% end %>
     </section>
+
+		<div id="helps" class="modal fade" role="dialog" aria-hidden="true">
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">如何控制幻灯片？</h4>
+					</div>
+					<div class="modal-body">
+						<h5>按回车、空格、右箭头或下箭头可进入下一页；使用Backspace、左箭头或上箭头可回到前一页。</h5>
+						<h5>按F11可进入全屏模式。</h5>
+						<h5>按Ctrl+R或F5可以刷新页面，而且还会保持在当前浏览的幻灯片页。</h5>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="comments" class="modal fade" role="dialog" aria-hidden="true">	
+			<div class = "modal-dialog">
+			<div class = "modal-content">
+			<%= render partial: 'comments/form' %>
+			<hr />
+			<div id = "all-comments">
+			  <%= render partial: 'comments/comment', collection: @comments, as: :comment %>
+			</div>
+			</div>
+			</div>
+		</div>
+		<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/button.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script>
+		<a class="bshareDiv" onclick="javascript:return false;"></a>
+		<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
   </body>
 </html>

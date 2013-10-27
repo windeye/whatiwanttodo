@@ -49,13 +49,11 @@
 				},
 				{ 
 					 wrapper  : "parent"
-					 //element     : "figure",
-					 //classname   : "col-md-10"
 				});
 		});
   </script>
 <% end %>
-<% cache('index_all_category', expires_in: 12.hours) do %>
+<% cache('index_all_category', expires_in: 30.minutes) do %>
 	<% Category.all.each do |c| %>
 		<% if c.powerpoints.count > 0 %>
 			<div class = "cate-header">
@@ -63,7 +61,7 @@
 			</div>
 			<div class = "image_carousel">
 				<div id = "<%= c.nickname %>"</div> 
-					<%= render partial: "powerpoints/powerpoint", collection: c.powerpoints.limit(16) %>
+					<%= render partial: "powerpoints/powerpoint", collection: c.powerpoints.order("created_at DESC").limit(16) %>
 				</div>
 				<a class="prev" id="<%= c.nickname %>_prev" href="#"><span>prev</span></a>
 				<a class="next" id="<%= c.nickname %>_next" href="#"><span>next</span></a>

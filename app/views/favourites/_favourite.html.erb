@@ -1,9 +1,9 @@
 <div id = "interactions">
 	<div class = "favourite pull-right">
 		<% if user_signed_in? and  current_user.favourited?(powerpoint) %>
-			<span><%= link_to "",powerpoint_favourite_path(powerpoint,current_user.favourites.where(powerpoint_id: powerpoint.id).first), { remote: true, method: :delete, class: "liked"} %>已收藏</span>
+			<span><%= link_to "",powerpoint_favourite_path(powerpoint,current_user.favourites.where(powerpoint_id: powerpoint.id).first), { remote: true, method: :delete, class: "liked"} %></span>
 		<% else %>
-			<span><%= link_to "", powerpoint_favourites_path(powerpoint), { method: :post, class: "unliked", remote: true } %>收藏</span>
+			<span><%= link_to "", powerpoint_favourites_path(powerpoint), { method: :post, class: "unliked", remote: true } %></span>
 		<% end %>
 	</div>
 </div>

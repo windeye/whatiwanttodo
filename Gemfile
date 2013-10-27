@@ -18,6 +18,8 @@ gem 'kaminari'
 #For uploade attachment and avatar
 gem 'carrierwave'
 gem 'mini_magick'  
+gem 'pdf-reader'
+gem 'paperclip', '~> 3.0'
 #gem 'mime_types'
 #
 #server gem
@@ -33,9 +35,10 @@ group :assets do
 	gem 'sass-rails', '~> 4.0.0'
   # Use Uglifier as compressor for JavaScript assets
 	gem 'uglifier', '>= 1.3.0'
+  # Use yui as compressor for css assets
+	gem 'yui-compressor' 
 	# Use CoffeeScript for .js.coffee assets and views
 	gem 'coffee-rails', '~> 4.0.0'
-	gem 'zurb-foundation', '~> 4.1.6'
 end
 
 gem 'jquery-turbolinks'
