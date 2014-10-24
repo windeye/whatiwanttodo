@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130920095337) do
+ActiveRecord::Schema.define(version: 20131022023022) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -50,17 +50,21 @@ ActiveRecord::Schema.define(version: 20130920095337) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "attachment"
-    t.string   "file_name"
-    t.integer  "file_size"
-    t.string   "image"
     t.integer  "category_id"
     t.integer  "favourites_count"
     t.string   "download_url"
-    t.string   "powerpoint_type"
+    t.string   "pdffile_file_name"
+    t.string   "pdffile_content_type"
+    t.integer  "pdffile_file_size"
+    t.datetime "pdffile_updated_at"
+    t.string   "file_id"
+    t.integer  "page_count",           default: 0
   end
 
   add_index "powerpoints", ["category_id"], name: "index_powerpoints_on_category_id", using: :btree
+  add_index "powerpoints", ["file_id"], name: "index_powerpoints_on_file_id", unique: true, using: :btree
+  add_index "powerpoints", ["title"], name: "index_powerpoints_on_title", unique: true, using: :btree
+  add_index "powerpoints", ["user_id"], name: "index_powerpoints_on_user_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -73,7 +77,7 @@ ActiveRecord::Schema.define(version: 20130920095337) do
   end
 
   add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_uniquely", using: :btree
 
   create_table "tags", force: true do |t|
     t.string "name"
@@ -90,15 +94,19 @@ ActiveRecord::Schema.define(version: 20130920095337) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar"
-    t.integer  "terms_of_service"
     t.string   "username"
     t.integer  "favourites_count"
     t.integer  "roles",                  default: 0
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree

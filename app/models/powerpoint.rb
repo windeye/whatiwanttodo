@@ -24,7 +24,7 @@ class Powerpoint < ActiveRecord::Base
 	validates :title,      :presence => true
 	validates_attachment :pdffile, :presence => true,
 		  :content_type => { :content_type => "application/pdf" },
-			:size => { :in => 0..10.megabytes}
+			:size => { :in => 0..15.megabytes}
 	#validates :description,:presence => true
 
 	#visit times
@@ -37,7 +37,7 @@ class Powerpoint < ActiveRecord::Base
 	def store_meta_info
 		#@current_format = File.extname(avatar_file_name)
 		#@basename       = File.basename(avatar_file_name, @current_format)
-		self.file_id =  Digest::SHA1.hexdigest(pdffile_file_name)
+		self.file_id =  Digest::SHA1.hexdigest(pdffile_file_name.delete("_ "))
 		self.pdffile.instance_write(:file_name, "#{self.file_id}_#{pdffile_file_name}")
 	end
 

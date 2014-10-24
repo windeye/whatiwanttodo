@@ -49,7 +49,7 @@ Slideonline::Application.configure do
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
-  config.log_level = :info
+  config.log_level = :warn
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -80,7 +80,7 @@ Slideonline::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  config.action_mailer.default_url_options = { :host => '10.0.2.136:3000' }
+  config.action_mailer.default_url_options = { :host => 'www.tagslide.com' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method =:smtp
   config.action_mailer.smtp_settings = {
@@ -89,6 +89,6 @@ Slideonline::Application.configure do
     :domain=> "126.com",
     :authentication=> :login,
     :user_name=> "tagslide@126.com",
-    :password=> "xlw123" 
+    :password=> "xlwTyc321baby" 
   }
 end

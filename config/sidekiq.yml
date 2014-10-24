@@ -1,8 +1,8 @@
 :verbose: false
 :pidfile: /var/run/app/sidekiq.pid
-:concurrency: 25
+:logfile: /www/data/log/sidekiq/sidekiq.log
+:concurrency: 10
 :queues:
-  - [events, 3]
   - [mailer, 3]
   - [pages, 2]
-  - [default, 1]
+  - [default, 2]

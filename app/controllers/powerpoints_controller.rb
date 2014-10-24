@@ -18,27 +18,27 @@ class PowerpointsController < ApplicationController
   # GET /powerpoints/1
   # GET /powerpoints/1.json
   def show
-		if @powerpoint.page_count > 0
-			@comments = @powerpoint.comments.order('created_at desc')
-			@comment = @powerpoint.comments.build		
-			@powerpoint.views.increment
+    if @powerpoint.page_count > 0
+      @comments = @powerpoint.comments.order('created_at desc')
+      @comment = @powerpoint.comments.build		
+      @powerpoint.views.increment
       render layout: false
-		else
-			render status: 404
-		end
-		#@hottest = Rails.cache.fetch('hottests', expires_in: 2.hours) do
-		#	allhottest = Powerpoint.hottest
-		#	if allhottest.length > 4
-		#		allhottest.slice(0,4)
-		#	else
-		#		allhottest.slice(0,allhottest.length)
-		#	end
-		#end
-		#@newest = Rails.cache.fetch('newests', expires_in: 2.hours) do
-		#  Powerpoint.newest.limit(4)
-		#end
-		#不能缓存这个,和具体的slide相关的。
-		#@relative = Powerpoint.tagged_with(@powerpoint.tag_list, on: :tags, any: true).where.not(id: @powerpoint.id).limit(4) 
+    else
+      render nothing: true, status: 404
+    end
+    #@hottest = Rails.cache.fetch('hottests', expires_in: 2.hours) do
+    #	allhottest = Powerpoint.hottest
+    #	if allhottest.length > 4
+    #		allhottest.slice(0,4)
+    #	else
+    #		allhottest.slice(0,allhottest.length)
+    #	end
+    #end
+    #@newest = Rails.cache.fetch('newests', expires_in: 2.hours) do
+    #  Powerpoint.newest.limit(4)
+    #end
+    #不能缓存这个,和具体的slide相关的。
+    #@relative = Powerpoint.tagged_with(@powerpoint.tag_list, on: :tags, any: true).where.not(id: @powerpoint.id).limit(4) 
   end
 
   # GET /powerpoints/1/edit

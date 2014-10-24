@@ -19,8 +19,8 @@ module Paperclip
       #src = @file
       #dst = Tempfile.new([@basename, @format ? ".#{@format}" : ''])
       src_path = File.expand_path(@file.path) if @file
-      digest = Digest::SHA1.hexdigest(@file.original_filename)
-      dest_dir  = "/www/data/slides/" + digest
+      digest = Digest::SHA1.hexdigest(@file.original_filename.delete("_ "))
+      dest_dir  = "/home/deploy/data/slides/" + digest
       dest = dest_dir + "/%d.png"
       begin
         parameters = []

@@ -7,15 +7,15 @@ development:
   adapter: mysql2 
   database: dslide
   pool: 5
-  username: root
-  password: xlw123
-  socket: /run/mysqld/mysqld.sock
+  username: mysql
+  password: <Leokmax789_Emily>
+  socket: /var/run/mysql/mysqld.sock
   encoding: utf8
 production:
   adapter: mysql2 
-  database: dslide
-  pool: 5
-  username: root
-  password: xlw123
-  socket: /run/mysqld/mysqld.sock
+  database: pslide
+  pool: 15
+  username: mysql
+  password: <Leokmax789_Emily>
+  socket: /var/run/mysql/mysqld.sock
   encoding: utf8

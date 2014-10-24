@@ -1,6 +1,6 @@
 class StoreMetaWorker
   include Sidekiq::Worker
-	sidekiq_options queue: :pages
+  sidekiq_options queue: :pages
 
   def perform(slide_id)
     s = Powerpoint.find_by_id(slide_id)
